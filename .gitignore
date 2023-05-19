@@ -9,6 +9,10 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+###> added my developer CaroL33FR
+.idea/
+###<
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
