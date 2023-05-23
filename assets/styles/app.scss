@@ -1,0 +1,115 @@
+// assets/styles/app.scss
+
+// customize some Bootstrap variables
+//$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap";
+
+body {
+    background-color: D9D9D9;
+    font-family: Raleway;
+    color: #092D57;
+}
+
+nav {
+    color: #092D57;
+    background-color: #E5C6C6;
+}
+
+.ws-logo {
+    height: 10vh;
+    width: auto;
+}
+
+/*
+.navbar-nav {
+    background-color: #E5C6C6;
+    color: #092D57;
+}
+*/
+
+.navbar-brand {
+    background-color: E5C6C;
+    color: #092D57;
+}
+
+/* TABS with Dropdowns 'Acteurs', 'Séries' and 'Français/languages' */
+.nav-item {
+    border: solid 1px;
+    margin: 0 5px;
+   /*
+    background-color: #b08968;
+    */
+}
+
+.nav-item-home {
+    border: none;
+}
+
+.nav-item-home a {
+    text-decoration: none;
+    color: #092D57;
+}
+
+.dropdown-menu {
+    color: #092D57;
+}
+
+.dropdown-item {
+    color: #092D57;
+    font-size: 0.8em;
+}
+
+.form-control {
+    border-radius: 0;
+    width: 25vw;
+}
+
+.dropdown-toggle {
+    color: #092D57;
+}
+
+.dropdown-toggle:hover {
+    color: #092D57;
+}
+
+/* SIGNING UP & SIGNING IN */
+.ws-signing {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.ws-signing a {
+    text-decoration: none;
+    color: #092D57;
+}
+
+.ws-signing a:hover {
+    color: #b08968;
+    font-weight: 600;
+}
+
+.inscription, .connexion {
+    padding: 15px;
+}
+
+
+/* WISHING LIST */
+.ws-ma-liste-d-envies {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.ws-ma-liste-d-envies a {
+    text-decoration: none;
+}
+
+.ws-ma-liste-d-envies a:hover {
+    color: #b08968;
+}
