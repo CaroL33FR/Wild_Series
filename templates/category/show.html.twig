@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories par type{% endblock %}
+
+{% block body %}
+    {{ dump () }}
+    <h1>Liste des séries par catégorie / Page SHOW des catégories </h1>
+    <h2>Nous sommes sur la page 'program\show.html.twig'</h2>
+    <p>Ici doivent s'afficher toutes les séries qui appartiennent à la même catégorie de séries (action, aventure, etc).</p>
+    {% for program in programs %}
+        <div>
+            <h2>Catégorie :{{ program.id }} / {{ program.title }}</h2>
+            <p>Résumé : {{ program.synopsis }}</p>
+            <a href="{{ path("program_id", {id: program.id}) }}">Voir la fiche</a>
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('category_index') }}">Retour à la page des catégories</a>
+{% endblock %}
