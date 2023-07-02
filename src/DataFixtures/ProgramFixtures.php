@@ -11,13 +11,38 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
+        /*for ($i = 0; $i < 10; $i++) {*/
             $program = new Program();
-            $program->setTitle('Title');
-            $program->setSynopsis('Il était une fois, trois petits canards peureux...');
-            $program->setCategory($this->getReference('category_Action'));
+            $program->setTitle('Arcane');
+            $program->setYear(1929);
+            $program->setSynopsis("Dans le monde de Runeterra, deux villes au même endroit sont en conflit : Piltover, 
+            constituant la partie supérieure...");
+            $program->setCategory($this->getReference('category_Animation'));
+            $this->addReference('program_Arcane', $program);
             $manager->persist($program);
-        }
+        /*}*/
+            $manager->flush();
+
+            /* Deuxième série */
+            $program = new Program();
+            $program->setTitle('Malcolm');
+            $program->setYear(2000);
+            $program->setSynopsis("La série raconte le quotidien de la famille de Malcolm, troisième fils d'une 
+            fratrie de quatre garçons au début de la série.");
+            $program->setCategory($this->getReference('category_Comédie'));
+            $this->addReference('program_Malcolm', $program);
+            $manager->persist($program);
+            $manager->flush();
+
+            /* Troisième série */
+            $program = new Program();
+            $program->setTitle('Les mystères de l\'Ouest');
+            $program->setYear(1965);
+            $program->setSynopsis("Cette série met en scène les aventures de deux agents de l’United States Secret Service, 
+            au service du président des États-Unis Ulysses S. Grant (1869 à 1877) : James T. West et Artemus Gordon.");
+            $program->setCategory($this->getReference('category_Aventure'));
+            $this->addReference('program_WildWest', $program);
+            $manager->persist($program);
             $manager->flush();
     }
 
