@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity(fields: 'title', message: 'Ce titre existe déjà')]
 class Program
 {
     #[ORM\Id]
@@ -17,12 +20,15 @@ class Program
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255, maxMessage: 'Le titre de la série {{ value }} ne doit pas dépasser {{ limit }} caractères')]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
     private ?string $synopsis = null;
 
     #[ORM\ManyToOne(inversedBy: 'programs')]
@@ -36,6 +42,10 @@ class Program
     private ?string $country = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    //#[Assert\Type(type: 'integer', message: 'The value {{ value }} is not a valid {{ type }}.')]
+    #[Assert\Length(min: 4, max: 4, minMessage: 'L\'année doit contenir quatre chiffres', maxMessage: 'L\'année ne peut dépasser quatre caractères')]
+
     private ?int $year = null;
 
     public function __construct()
