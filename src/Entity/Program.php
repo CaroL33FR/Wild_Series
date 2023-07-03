@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProgramRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +28,14 @@ class Program
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
+    private Collection $actors;
+
+    public function __construct()
+    {
+        $this->actors = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +86,33 @@ class Program
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Actor>
+     */
+    public function getActors(): Collection
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor): self
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors->add($actor);
+            $actor->addProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor): self
+    {
+        if ($this->actors->removeElement($actor)) {
+            $actor->removeProgram($this);
+        }
 
         return $this;
     }
