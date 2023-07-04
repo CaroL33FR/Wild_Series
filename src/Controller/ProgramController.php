@@ -34,6 +34,9 @@ class ProgramController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $programRepository->save($program, true);
+
+            $this->addFlash('success', 'La série a bien été ajoutée');
+            $this->addFlash('danger', 'La série n\'a pu être ajoutée');
             return $this->redirectToRoute('program_index');
     }
         return $this->render('program/new.html.twig', [
