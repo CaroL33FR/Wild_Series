@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories - liste{% endblock %}
+
+{% block body %}
+    <h1>Liste de toutes les catégories associables aux séries</h1>
+    <h2>Nous sommes sur la page 'category\index.html.twig'</h2>
+    <p>Ici doivent s'afficher toutes les catégories qui sont donc dans la table intitulée 'category' de la base de données.</p>
+    <p>Un lien doit accompagner chacune des catégories afin de s'y référer.</p>
+    <ul>
+        {% for category in categories %}
+
+        <li>{{ category.name }} <a href="{{ path("category_show", {categoryName: category.name}) }}">Voir la fiche</a></li>
+
+        {% endfor %}
+    </ul>
+    <a href="{{ path('category_index') }}">
+        Retour à l'accueil
+    </a>
+{% endblock %}
