@@ -160,19 +160,19 @@ class Program
         return $this;
     }
 }
-
+/*
 #[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
     private Collection $actors;
 
     public function __construct()
 {
     $this->actors = new ArrayCollection();
-}
-
+}*/
+/*
 /**
  * @return Collection<int, Actor>
  */
-    public function getActors(): Collection
+ /*   public function getActors(): Collection
 {
     return $this->actors;
 }
@@ -194,4 +194,4 @@ class Program
     }
 
     return $this;
-}
+}*/
