@@ -18,7 +18,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setSynopsis("Dans le monde de Runeterra, deux villes au même endroit sont en conflit : Piltover, 
             constituant la partie supérieure...");
             $program->setCategory($this->getReference('category_Animation'));
-            $this->addReference('program_Arcane', $program);
+            $this->addReference('program_1', $program);
             $manager->persist($program);
         /*}*/
             $manager->flush();
@@ -30,7 +30,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setSynopsis("La série raconte le quotidien de la famille de Malcolm, troisième fils d'une 
             fratrie de quatre garçons au début de la série.");
             $program->setCategory($this->getReference('category_Comédie'));
-            $this->addReference('program_Malcolm', $program);
+            $this->addReference('program_2', $program);
             $manager->persist($program);
             $manager->flush();
 
@@ -41,7 +41,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setSynopsis("Cette série met en scène les aventures de deux agents de l’United States Secret Service, 
             au service du président des États-Unis Ulysses S. Grant (1869 à 1877) : James T. West et Artemus Gordon.");
             $program->setCategory($this->getReference('category_Aventure'));
-            $this->addReference('program_WildWest', $program);
+            $this->addReference('program_3', $program);
             $manager->persist($program);
             $manager->flush();
     }
