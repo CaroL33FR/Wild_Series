@@ -160,7 +160,7 @@ class Program
         return $this;
     }
 }
-
+/*
 #[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
     private Collection $actors;
 
@@ -168,7 +168,7 @@ class Program
 {
     $this->actors = new ArrayCollection();
 }
-
+*//*
 /**
  * @return Collection<int, Actor>
  */
@@ -194,4 +194,4 @@ class Program
     }
 
     return $this;
-}
+}*/
