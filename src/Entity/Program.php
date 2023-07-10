@@ -168,7 +168,7 @@ class Program
 {
     $this->actors = new ArrayCollection();
 }
-
+*//*
 /**
  * @return Collection<int, Actor>
  */
