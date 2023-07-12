@@ -18,14 +18,23 @@
 
     <body>
         <header>{% include '_navbar.html.twig' %}</header>
-        {% block body %}
-            {% for category, messages in app.flashes %}
+
+            {# Flashmessage Success #}
+            {% for success, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ category }}">
+                    <div class="alert alert-{{ success }}">
                         {{ message }}
                     </div>
                 {% endfor %}
             {% endfor %}
-        {% endblock %}
+            {# Flashmessage Warning #}
+            {% for warning, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ warning }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% block body %}{% endblock %}
     </body>
 </html>

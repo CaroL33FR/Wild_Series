@@ -7,6 +7,7 @@ use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\SeasonRepository;
 use App\Repository\ProgramRepository;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ class ProgramController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(ProgramRepository $programRepository): Response
     {
+
         $programs = $programRepository->findAll();
 
         return $this->render('program/index.html.twig', [
@@ -29,17 +31,29 @@ class ProgramController extends AbstractController
     #[Route('/new', name: 'new')]
     public function new(Request $request, ProgramRepository $programRepository): Response
     {
+
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash('warning', 'La série n\'a pu être ajoutée. Vérifiez vos champs.');
+            /*return $this->redirectToRoute('program_new');*/
+        } elseif ($form->isSubmitted() && $form->isValid()) {
+            $programRepository->save($program, true);
+            $this->addFlash('success', 'La série a bien été ajoutée');
+        }
+
+        /*
         if ($form->isSubmitted() && $form->isValid()) {
             $programRepository->save($program, true);
 
             $this->addFlash('success', 'La série a bien été ajoutée');
-            $this->addFlash('danger', 'La série n\'a pu être ajoutée');
-            return $this->redirectToRoute('program_index');
-    }
+            /*$this->addFlash('warning', 'La série n\'a pu être ajoutée');*/
+            /*return $this->redirectToRoute('program_index');*/
+
         return $this->render('program/new.html.twig', [
+            'program' => $program,
             'form' => $form,
         ]);
 
@@ -67,8 +81,8 @@ class ProgramController extends AbstractController
 
         $seasons = $seasonRepository->find($seasonId);
         return $this->render('program/season_show.html.twig')[
-            'program'=> $program,
-            'season'=> $seasons
+            'program' => $program,
+            'season' => $seasons,
         ];
     }*/
 }
