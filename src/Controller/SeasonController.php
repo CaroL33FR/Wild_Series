@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Season;
 use App\Form\SeasonType;
+use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
+use App\Entity\Program;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,4 +77,21 @@ class SeasonController extends AbstractController
 
         return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
     }
-}
+
+    #[Route('/{program}/season/{season}', name: 'program_season_show', methods: ['GET'])]
+    public function showSeason(Program $program, ProgramRepository $programRepository, Season $season, SeasonRepository $seasonRepository): Response
+    {
+        /* NOT USED as param converter used
+         $program = $programRepository->findOneBy(['id' => $programId]);
+         $season = $seasonRepository->find($seasonId);
+         */
+        if (!$program || !$season) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('season/show.html.twig', [
+            'program' => $program,
+            'season' => $season,
+        ]);
+    }
+    }
