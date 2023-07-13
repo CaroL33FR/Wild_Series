@@ -10,7 +10,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img class="ws-logo" src="{{ asset('build/images/Logo_Road_Trip.jpg') }}" alt="Logo"/> Wild Séries</a>
+                <img class="ws-logo" src="{{ asset('build/images/Logo_Road_Trip_removebg.png') }}" alt="Logo"/> Wild Séries</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,6 +29,7 @@
                             Acteurs
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ path('actor_index') }}">Index Acteur</a></li>
                             <li><a class="dropdown-item" href="#">A-Z</a></li>
                             <li><a class="dropdown-item" href="#">Continent</a></li>
                             <li><a class="dropdown-item" href="#">Années</a></li>
@@ -41,6 +42,8 @@
                             Séries
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ path('program_index') }}">Index Série</a></li>
+                            <li><a class="dropdown-item" href="{{ path('category_index') }}">Index Catégorie</a></li>
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Comédie</a></li>
                             <li><a class="dropdown-item" href="#">Drame</a></li>

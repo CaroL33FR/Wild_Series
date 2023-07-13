@@ -3,8 +3,11 @@
 // src/Controller/ProgramController.php
 namespace App\Controller;
 
+use App\Entity\Episode;
 use App\Entity\Program;
+use App\Entity\Season;
 use App\Form\ProgramType;
+use App\Repository\EpisodeRepository;
 use App\Repository\SeasonRepository;
 use App\Repository\ProgramRepository;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -60,10 +63,12 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/{id}', name: 'id', requirements: ['id'=>'\d+'], methods: ['GET'])]
-    public function show($id, ProgramRepository $programRepository): Response
+    public function show(Program $program, ProgramRepository $programRepository): Response
     {
-        $program = $programRepository->findOneBy(['id' => $id]);
-
+        /* PARAM CONVERTER: line below not to be added, used when param converter not used
+        and $id is used as parameter in method show
+         * $program = $programRepository->findOneBy(['id' => $id]);
+*/
         if (!$program) {
             throw $this->createNotFoundException(
             );
@@ -73,16 +78,42 @@ class ProgramController extends AbstractController
         ]);
     }
 
-/*
-    #[Route('program/{programId}/seasons/{seasonId}', name: 'program_season_show', methods: ['GET'])]
-    public function showSeason($programId, $seasonId, ProgramRepository $programRepository, SeasonRepository $seasonRepository): Response
+    #[Route('/{program}/season/{season}', name: 'program_season_show', methods: ['GET'])]
+    public function showSeason(Program $program, ProgramRepository $programRepository, Season $season, SeasonRepository $seasonRepository): Response
     {
-        $program = $programRepository->find($programId);
+       /* NOT USED as param converter used
+        $program = $programRepository->findOneBy(['id' => $programId]);
+        $season = $seasonRepository->find($seasonId);
+        */
+        if (!$program || !$season) {
+            throw $this->createNotFoundException(
+            );
+        }
 
-        $seasons = $seasonRepository->find($seasonId);
-        return $this->render('program/season_show.html.twig')[
+        return $this->render('program/season_show.html', [
             'program' => $program,
-            'season' => $seasons,
-        ];
-    }*/
+            'season' => $season,
+        ]);
+    }
+
+    #[Route('/{program}/season/{season}/episode/{episode}', name: 'program_episode_show', methods: ['GET'])]
+    public function showEpisode(Program $program, ProgramRepository $programRepository, Season $season, SeasonRepository $seasonRepository, Episode $episode, EpisodeRepository $episodeRepository): Response
+    {
+        /* NOT USED as param converter used
+         $program = $programRepository->findOneBy(['id' => $programId]);
+         $season = $seasonRepository->find($seasonId);
+         */
+        if (!$program || !$season) {
+            throw $this->createNotFoundException(
+            );
+        }
+
+        return $this->render('/program/episode_show.html', [
+            'program' => $program,
+            'season' => $season,
+            'episode' => $episode,
+
+
+        ]);
+    }
 }
