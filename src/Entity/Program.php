@@ -45,12 +45,15 @@ class Program
     #[Assert\NotBlank]
     //#[Assert\Type(type: 'integer', message: 'The value {{ value }} is not a valid {{ type }}.')]
     #[Assert\Length(min: 4, max: 4, minMessage: 'L\'année doit contenir quatre chiffres', maxMessage: 'L\'année ne peut dépasser quatre caractères')]
-
     private ?int $year = null;
+
+    #[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
+    private Collection $actors;
 
     public function __construct()
     {
         $this->seasons = new ArrayCollection();
+        $this->actors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,39 +162,30 @@ class Program
 
         return $this;
     }
-}
-/*
-#[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
-    private Collection $actors;
 
-    public function __construct()
-{
-    $this->actors = new ArrayCollection();
-}
-*//*
-/**
- * @return Collection<int, Actor>
- */
-/*    public function getActors(): Collection
-{
-    return $this->actors;
-}
+
+    public function getActors(): Collection
+    {
+
+        return $this->actors;
+    }
 
     public function addActor(Actor $actor): self
-{
-    if (!$this->actors->contains($actor)) {
-        $this->actors->add($actor);
-        $actor->addProgram($this);
-    }
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors->add($actor);
+            $actor->addProgram($this);
+        }
 
-    return $this;
-}
+        return $this;
+    }
 
     public function removeActor(Actor $actor): self
-{
-    if ($this->actors->removeElement($actor)) {
-        $actor->removeProgram($this);
-    }
+    {
+        if ($this->actors->removeElement($actor)) {
+            $actor->removeProgram($this);
+        }
 
-    return $this;
-}*/
+        return $this;
+    }
+}
