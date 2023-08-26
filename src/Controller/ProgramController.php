@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 #[Route('/program', name: 'program_')]
@@ -32,7 +33,7 @@ class ProgramController extends AbstractController
         );
     }
     #[Route('/new', name: 'new')]
-    public function new(Request $request, ProgramRepository $programRepository): Response
+    public function new(Request $request, ProgramRepository $programRepository, SluggerInterface $slugger): Response
     {
 
         $program = new Program();
@@ -54,6 +55,10 @@ class ProgramController extends AbstractController
             $this->addFlash('success', 'La série a bien été ajoutée');
             /*$this->addFlash('warning', 'La série n\'a pu être ajoutée');*/
             /*return $this->redirectToRoute('program_index');*/
+
+/* SERVICES: using SLUG -> commented as tested in Entity file with __construct
+        $slug = $slugger->slug($program->getTitle());
+        $program->setSlug($slug);*/
 
         return $this->render('program/new.html.twig', [
             'program' => $program,
