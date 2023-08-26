@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\ProgramController;
 use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 #[UniqueEntity(fields: 'title', message: 'Ce titre existe déjà')]
@@ -50,10 +52,18 @@ class Program
     #[ORM\ManyToMany(targetEntity: Actor::class, mappedBy: 'programs')]
     private Collection $actors;
 
-    public function __construct()
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    public function __construct(SluggerInterface $slugger, ProgramController $program)
     {
         $this->seasons = new ArrayCollection();
         $this->actors = new ArrayCollection();
+
+    /*SERVICES: slug*/
+        $slug = $slugger->slug($program->getTitle());
+        $program->setSlug($slug);
+    /*ENDS*/
     }
 
     public function getId(): ?int
@@ -185,6 +195,18 @@ class Program
         if ($this->actors->removeElement($actor)) {
             $actor->removeProgram($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
