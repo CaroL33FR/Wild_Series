@@ -1,5 +1,9 @@
 # Wild Series
 
+***
+*Ce README correspond à une description du projet. Il ne mentionne pas les points relatifs à son installation.*
+***
+
 Ce dépôt est l'objet d'une initiation au cadriciel Symfony au cours d'une formation intensive de cinq mois à la Wild Code School 
 de mars à juillet 2023. L'apprentissage de **Symfony 6.3** a pris place en seconde partie de formation de mai à juillet. La première 
 partie fut dédiée aux fondamentaux de **PHP 8.2** sur les programmations procédurale et orienté objet.
