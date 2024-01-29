@@ -29,33 +29,48 @@ beaucoup en local avant de `push`. Enfin, des 'erreurs', parties d'une interroga
 
 ### Quêtes
 
-1. Introduction à Symfony.
-2. Mise en place du projet Wild Series.
-3. Installation et initialisation d'un projet.
-4. Création de la page d'accueil.
-5. Webpack Encore : installation du module.
-6. Routing avancé.
-7. Doctrine : création de la première entité.
-8. Les fixtures (simples sans relation).
-9. Doctrine : relation "Many-To-One".
-10. Les fixtures avancées avec jointures (avec entités ayant des dépendances).
-11. Doctrine : récupération de données stockées.
-12. Doctrine : relations bidirectionnelles.
-13. FakerPHP : fabrication de jeux de données.
-14. Param converter.
-15. Les formulaires.
-16. Génération d'un CRUD.
-17. La validation.
-18. Sessions et messages flash.
-19. Doctrine : relations "Many-To-Many".
-20. EntityType.
-21. Les services.
-22. L'envoi d'e-mail.
-23. Vich Upload : upload de médias.
-24. Gestion des utilisateurs.
-25. Sécurisation des routes.
-26. Inscription d'un utilisateur.
-27. Introduction à Stimulus.
-28. Introduction à Symfony UX.
-29. Twig component.
-30. Requêtes personnalisées.
+- Mise en place :
+  - Introduction à Symfony
+  - Installation et initialisation du projet
+  - Création de la page d'accueil
+  
+
+- Webpack Encore : 
+  - Installation du module
+  
+
+- Routing :
+  - Routing avancé
+
+
+- Doctrine 
+  - Création de la première entité
+  - Relation "Many-To-One"
+  - Récupération de données stockées
+  - Relations bidirectionnelles
+  - Relations "Many-To-Many"
+
+
+- Les fixtures :
+  - Simples sans relation
+  - Avancées avec jointures (entités avec des dépendances)
+
+
+- Et aussi :
+  - FakerPHP
+  - Param converter
+  - Les formulaires
+  - Génération d'un CRUD
+  - La validation
+  - Sessions et messages flash
+  - EntityType
+  - Les services
+  - L'envoi d'e-mail
+  - Vich Upload
+  - Gestion des utilisateurs
+  - Sécurisation des routes
+  - Inscription d'un utilisateur
+  - Introduction à Stimulus
+  - Introduction à Symfony UX
+  - Twig component
+  - Requêtes personnalisées
